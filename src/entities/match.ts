@@ -22,6 +22,9 @@ export class Match {
   stars: number
 
   @Column({ type: 'integer', default: 0 })
+  moviments: number
+
+  @Column({ type: 'integer', default: 0 })
   coins: number
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
