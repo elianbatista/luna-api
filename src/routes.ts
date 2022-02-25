@@ -60,4 +60,34 @@ router.get('/api/match/errors-per-level', async (req: Request, res: Response) =>
   res.status(200).send(request)
 })
 
+router.get('/api/match/errors-average', async (req: Request, res: Response) => {
+  const request = await getRepository(Match)
+                          .createQueryBuilder('match')
+                          .select('AVG(match.errors)', 'average')
+                          .addSelect('match.level')
+                          .groupBy('match.level')
+                          .getRawMany()
+  res.status(200).send(request)
+})
+
+router.get('/api/match/time-average', async (req: Request, res: Response) => {
+  const request = await getRepository(Match)
+                          .createQueryBuilder('match')
+                          .select('AVG(match.time)', 'average')
+                          .addSelect('match.level')
+                          .groupBy('match.level')
+                          .getRawMany()
+  res.status(200).send(request)
+})
+
+router.get('/api/match/moviments-average', async (req: Request, res: Response) => {
+  const request = await getRepository(Match)
+                          .createQueryBuilder('match')
+                          .select('AVG(match.moviments)', 'average')
+                          .addSelect('match.level')
+                          .groupBy('match.level')
+                          .getRawMany()
+  res.status(200).send(request)
+})
+
 export default router
